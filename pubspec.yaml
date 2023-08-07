@@ -1,0 +1,58 @@
+name: shopy
+description: A new Flutter project.
+
+publish_to: 'none' # Remove this line if you wish to publish to pub.dev
+
+version: 1.0.0+1
+
+environment:
+  sdk: '>=2.19.6 <3.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  cupertino_icons: ^1.0.2
+  firebase_core: ^2.13.1
+  sizer: ^2.0.15
+  fpdart: ^0.6.0
+  firebase_auth: ^4.7.2
+  cloud_firestore: ^4.8.4
+  firebase_storage: ^11.2.5
+  flutter_riverpod: ^2.3.6
+  hooks_riverpod: ^2.3.7
+  riverpod_annotation: ^2.1.1
+  uuid: ^3.0.7
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^2.0.0
+  riverpod_generator: ^2.2.4
+  flutter_gen_runner: ^5.3.1
+  build_runner:
+
+
+flutter:
+
+  uses-material-design: true
+
+  # To add assets to your application, add an assets section, like this:
+  assets:
+    - assets/images/
+  #   - images/a_dot_ham.jpeg
+
+  fonts:
+    - family: Poppins
+      fonts:
+        - asset: assets/fonts/Poppins-Light.ttf
+          weight: 300
+        - asset: assets/fonts/Poppins-Regular.ttf
+          weight: 400
+        - asset: assets/fonts/Poppins-Medium.ttf
+          weight: 500
+        - asset: assets/fonts/Poppins-SemiBold.ttf
+          weight: 600
+        - asset: assets/fonts/Poppins-Bold.ttf
+          weight: 700
+
