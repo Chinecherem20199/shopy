@@ -1,16 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:shopy/pages/navpages/cart_page.dart';
 import 'package:shopy/pages/navpages/favourite_page.dart';
 import 'package:shopy/pages/navpages/main_page.dart';
 
-class HomePage extends StatefulWidget {
+class HomePage extends ConsumerStatefulWidget {
   const HomePage({Key? key}) : super(key: key);
 
   @override
-  State<HomePage> createState() => _HomePageState();
+  HomePageState createState() => HomePageState();
 }
 
-class _HomePageState extends State<HomePage> {
+class HomePageState extends ConsumerState<HomePage> {
+  final selectedProductIdProvider = StateProvider<String?>((ref) => null);
   int currentIndex = 0;
 
   void onTabTapped(int index) {

@@ -6,7 +6,10 @@ import 'package:shopy/resources/sized_manager.dart';
 import '../../presentation/widget/categories.dart';
 
 class MainPage extends StatefulWidget {
-  const MainPage({Key? key}) : super(key: key);
+  //final DummyProduct hotel;
+  const MainPage({
+    Key? key,
+  }) : super(key: key);
 
   @override
   State<MainPage> createState() => _MainPageState();
@@ -14,6 +17,7 @@ class MainPage extends StatefulWidget {
 
 class _MainPageState extends State<MainPage> {
   List<String> dataList = ['Item 1', 'Item 2', 'Item 3', 'Item 4', 'Item 5'];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -147,7 +151,7 @@ class _MainPageState extends State<MainPage> {
               SizedBox(
                 height: screenHeight(context) * 0.012,
               ),
-              const Recomendeds(),
+              Recomendeds(),
             ],
           ),
         ),
