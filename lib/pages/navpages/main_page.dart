@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:shopy/presentation/widget/recommendeds.dart';
 import 'package:shopy/resources/color_manager.dart';
 import 'package:shopy/resources/sized_manager.dart';
 
 import '../../presentation/widget/categories.dart';
+import '../../presentation/widget/recommen.dart';
 
 class MainPage extends StatefulWidget {
   //final DummyProduct hotel;
@@ -151,7 +151,8 @@ class _MainPageState extends State<MainPage> {
               SizedBox(
                 height: screenHeight(context) * 0.012,
               ),
-              Recomendeds(),
+              //Recomendeds(),
+              Recommens(),
             ],
           ),
         ),

@@ -1,26 +1,8 @@
-class DummyProduct {
-  final String id;
-  final String image;
-  final String title;
-  final String subTitle;
-  final String description;
-  final double price;
-  final double rating;
-  // final List<String> imagePath;
-  // var imagePath;
+import 'package:flutter/material.dart';
+import 'package:shopy/models/dommydata/products.dart';
 
-  const DummyProduct({
-    required this.id,
-    required this.image,
-    required this.title,
-    required this.subTitle,
-    required this.description,
-    required this.price,
-    this.rating = 0.0,
-    // required this.imagePath
-  });
-
-  static List<DummyProduct> sampleProduct = const [
+class Sample extends ChangeNotifier{
+  final List<DummyProduct> _sampleProduct = [
     DummyProduct(
         id: "1",
         image: "assets/images/shoe1.png",
@@ -62,4 +44,22 @@ class DummyProduct {
         // imagePath: imagePath
         )
   ];
+  //Cart
+  List<DummyProduct> _cart = [];
+  List<DummyProduct> get product => _sampleProduct;
+  List<DummyProduct> get cart => _cart;
+
+  //add to cart method
+  void addToCart(DummyProduct product, int quantity){
+    for(int i = 0; i < quantity; i++){
+      _cart.add(product);
+      
+    }
+    notifyListeners();
+  }
+  //remove to cart method
+  void removeToCart(DummyProduct product){
+    _cart.remove(product);
+    notifyListeners();
+  }
 }

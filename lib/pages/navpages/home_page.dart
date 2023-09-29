@@ -4,14 +4,14 @@ import 'package:shopy/pages/navpages/cart_page.dart';
 import 'package:shopy/pages/navpages/favourite_page.dart';
 import 'package:shopy/pages/navpages/main_page.dart';
 
-class HomePage extends ConsumerStatefulWidget {
+class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
 
   @override
   HomePageState createState() => HomePageState();
 }
 
-class HomePageState extends ConsumerState<HomePage> {
+class HomePageState extends State<HomePage> {
   final selectedProductIdProvider = StateProvider<String?>((ref) => null);
   int currentIndex = 0;
 

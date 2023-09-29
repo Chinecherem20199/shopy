@@ -10,7 +10,7 @@ class Testing extends StatefulWidget {
 class _TestingState extends State<Testing> {
   int selectedIndex = -1;
 
-  List<bool> _selections = List.generate(2, (_) => false);
+  final List<bool> _selections = List.generate(2, (_) => false);
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -106,7 +106,7 @@ class ReusableGender extends StatelessWidget {
   final String text;
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return const SizedBox(
       width: 144,
       height: 144,
     );

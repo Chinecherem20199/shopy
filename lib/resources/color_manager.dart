@@ -16,7 +16,7 @@ extension HexColor on Color {
   static Color fromHex(String hexColorString) {
     hexColorString = hexColorString.replaceAll('#', '');
     if (hexColorString.length == 6) {
-      hexColorString = 'FF' + hexColorString; // 8 character with opacity 100%
+      hexColorString = 'FF$hexColorString'; // 8 character with opacity 100%
     }
     return Color(
       int.parse(

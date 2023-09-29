@@ -1,20 +1,62 @@
+
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
+
 import 'package:shopy/resources/color_manager.dart';
 import 'package:shopy/resources/sized_manager.dart';
 
-import '../../provider/all_product_provider.dart';
+import '../../models/category.dart';
 
-class CategoriesList extends ConsumerWidget {
+
+class CategoriesList extends StatefulWidget {
   const CategoriesList({Key? key}) : super(key: key);
 
+   @override
+  State<CategoriesList> createState()  => _CategoriesListState();
+}
+class _CategoriesListState extends State<CategoriesList> {
+
+   static List<Categories> category = [
+    Categories(
+        
+        image: "assets/images/shoe1.png",
+        name: "Nike Air Jordan",
+        // imagePath: imagePath
+        ),
+    Categories(
+       
+        image: "assets/images/shoe2.png",
+        name: "Nike Air Jordan",
+       
+        // imagePath: imagePath
+        ),
+    Categories(
+       
+        image: "assets/images/shoe3.png",
+        name: "Nike Air Jordan",
+        // imagePath: imagePath
+        ),
+    Categories(
+        image: "assets/images/shoe4.png",
+        name: "Nike Balon Jordan",
+  
+        // imagePath: imagePath
+        )
+  ];
+  final List<Categories> categories = List.generate(
+    category.length,
+    (index) => Categories(
+      image: category[index].image,
+      name: category[index].name,
+    
+    ),
+  );
+  // List<Categories> get productCart => products;
+
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    final categories = ref.watch(allProductsProvider);
+  Widget build(BuildContext context) {
     return SizedBox(
       height: 235,
-      child: categories.when(
-        data: (categories) => ListView.separated(
+      child:  ListView.separated(
             shrinkWrap: true,
             physics: const BouncingScrollPhysics(),
             scrollDirection: Axis.horizontal,
@@ -51,7 +93,7 @@ class CategoriesList extends ConsumerWidget {
                           Row(
                             children: [
                               Text(
-                                categories[index].title,
+                                categories[index].name,
                                 style: TextStyle(
                                   fontWeight: FontWeightManager.bold,
                                   fontFamily: FontConstant.fontFamilyPoppins,
@@ -67,57 +109,57 @@ class CategoriesList extends ConsumerWidget {
                                 color: Colors.yellow.shade700,
                                 size: screenHeight(context) * 0.012,
                               ),
-                              Text(
-                                categories[index].rating.toString(),
-                                style: TextStyle(
-                                  color: ColorManager.grayLight,
-                                  fontSize: screenWidth(context) * 0.015,
-                                  fontFamily: FontConstant.fontFamilyPoppins,
-                                  fontWeight: FontWeightManager.semiBold,
-                                ),
-                              ),
+                              // Text(
+                              //   categories[index].rating.toString(),
+                              //   style: TextStyle(
+                              //     color: ColorManager.grayLight,
+                              //     fontSize: screenWidth(context) * 0.015,
+                              //     fontFamily: FontConstant.fontFamilyPoppins,
+                              //     fontWeight: FontWeightManager.semiBold,
+                              //   ),
+                              // ),
                             ],
                           ),
-                          const SizedBox(
-                            height: 2,
-                          ),
-                          Text(
-                            categories[index].subTitle,
-                            style: TextStyle(
-                              fontWeight: FontWeightManager.semiBold,
-                              fontFamily: FontConstant.fontFamilyPoppins,
-                              fontSize: screenHeight(context) * 0.012,
-                              color: ColorManager.black,
-                            ),
-                            textAlign: TextAlign.start,
-                          ),
+                          // const SizedBox(
+                          //   height: 2,
+                          // ),
+                          // Text(
+                          //   categories[index].subTitle,
+                          //   style: TextStyle(
+                          //     fontWeight: FontWeightManager.semiBold,
+                          //     fontFamily: FontConstant.fontFamilyPoppins,
+                          //     fontSize: screenHeight(context) * 0.012,
+                          //     color: ColorManager.black,
+                          //   ),
+                          //   textAlign: TextAlign.start,
+                          // ),
                           Row(
                             mainAxisAlignment: MainAxisAlignment.start,
                             children: [
-                              Text(
-                                categories[index].description,
-                                style: TextStyle(
-                                  fontWeight: FontWeightManager.bold,
-                                  fontFamily: FontConstant.fontFamilyPoppins,
-                                  fontSize: 12,
-                                  color: ColorManager.grayLight,
-                                ),
-                                textAlign: TextAlign.start,
-                                overflow: TextOverflow.clip,
-                              ),
-                              Spacer(),
+                              // Text(
+                              //   categories[index].description,
+                              //   style: TextStyle(
+                              //     fontWeight: FontWeightManager.bold,
+                              //     fontFamily: FontConstant.fontFamilyPoppins,
+                              //     fontSize: 12,
+                              //     color: ColorManager.grayLight,
+                              //   ),
+                              //   textAlign: TextAlign.start,
+                              //   overflow: TextOverflow.clip,
+                              // ),
+                               Spacer(),
                               Icon(Icons.add_circle),
                             ],
                           ),
-                          Text(
-                            categories[index].price.toString(),
-                            style: TextStyle(
-                              fontWeight: FontWeightManager.bold,
-                              fontFamily: FontConstant.fontFamilyPoppins,
-                              fontSize: 12,
-                              color: ColorManager.black,
-                            ),
-                          ),
+                          // Text(
+                          //   categories[index].price.toString(),
+                          //   style: TextStyle(
+                          //     fontWeight: FontWeightManager.bold,
+                          //     fontFamily: FontConstant.fontFamilyPoppins,
+                          //     fontSize: 12,
+                          //     color: ColorManager.black,
+                          //   ),
+                          // ),
                         ],
                       ),
                     ),
@@ -129,11 +171,13 @@ class CategoriesList extends ConsumerWidget {
                   padding: EdgeInsets.only(right: 10),
                 ),
             itemCount: categories.length),
-        error: (error, stackTrace) => Text("Error occurred $error"),
-        loading: () => const Center(
-          child: CircularProgressIndicator(),
-        ),
-      ),
+        // error: (error, stackTrace) => Text("Error occurred $error"),
+        // loading: () => const Center(
+        //   child: CircularProgressIndicator(),
+        // ),
+    
     );
   }
+  
 }
+
