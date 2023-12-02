@@ -1,6 +1,6 @@
-import 'package:flutter/material.dart';
 
-class DummyProduct  extends ChangeNotifier{
+
+class DummyProduct{
   final String? id;
   final String image;
   final String title;
@@ -8,6 +8,7 @@ class DummyProduct  extends ChangeNotifier{
   final String description;
   final double price;
   final double rating;
+  int quantity;
   // final List<String> imagePath;
   // var imagePath;
 
@@ -19,6 +20,7 @@ class DummyProduct  extends ChangeNotifier{
     required this.description,
     required this.price,
     required this.rating,
+    required this.quantity,
     //this.rating = 0.0,
     // required this.imagePath
   });

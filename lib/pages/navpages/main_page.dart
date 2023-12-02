@@ -50,10 +50,17 @@ class _MainPageState extends State<MainPage> {
                     // SizedBox(
                     //   width: 290,
                     // ),
-                    Image.asset(
-                      "assets/images/bag.png",
-                      height: screenHeight(context) * 0.04,
-                      width: screenWidth(context) * 0.04,
+                    GestureDetector(
+                      onTap: ()=>Navigator.pushNamed(context, "/cart"),
+                      child: 
+                      Semantics(
+                        label: "Shopping Cart Image",
+                        child: Icon(Icons.shopping_cart_outlined))
+                      // Image.asset(
+                      //   "assets/images/bag.png",
+                      //   height: screenHeight(context) * 0.04,
+                      //   width: screenWidth(context) * 0.04,
+                      // ),
                     ),
                   ],
                 ),
@@ -61,30 +68,33 @@ class _MainPageState extends State<MainPage> {
               SizedBox(
                 height: screenWidth(context) * 0.0312,
               ),
-              Card(
-                shadowColor: const Color(0xff968E8E),
-                margin: EdgeInsets.only(
-                  left: screenWidth(context) * 0.025,
-                  right: screenWidth(context) * 0.025,
-                ),
-                elevation: 1,
-                color: const Color(0xffECE0E0),
-                child: SizedBox(
-                  height: screenWidth(context) * 0.09,
-                  child: TextFormField(
-                    decoration: InputDecoration(
-                        border: InputBorder.none,
-                        prefixIcon: Icon(
-                          Icons.search_rounded,
-                          size: screenHeight(context) * 0.025,
-                          color: Colors.black,
-                        ),
-                        suffixIcon: Icon(
-                          Icons.tune_outlined,
-                          size: screenHeight(context) * 0.025,
-                          color: Colors.black,
-                        ),
-                        hintText: "Search Product"),
+              Semantics(
+                label: "Click here to search for products",
+                child: Card(
+                  shadowColor: const Color(0xff968E8E),
+                  margin: EdgeInsets.only(
+                    left: screenWidth(context) * 0.025,
+                    right: screenWidth(context) * 0.025,
+                  ),
+                  elevation: 1,
+                  color: const Color(0xffECE0E0),
+                  child: SizedBox(
+                    height: screenWidth(context) * 0.09,
+                    child: TextFormField(
+                      decoration: InputDecoration(
+                          border: InputBorder.none,
+                          prefixIcon: Icon(
+                            Icons.search_rounded,
+                            size: screenHeight(context) * 0.025,
+                            color: Colors.black,
+                          ),
+                          suffixIcon: Icon(
+                            Icons.tune_outlined,
+                            size: screenHeight(context) * 0.025,
+                            color: Colors.black,
+                          ),
+                          hintText: "Search Product"),
+                    ),
                   ),
                 ),
               ),
@@ -95,7 +105,7 @@ class _MainPageState extends State<MainPage> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
-                    "Explore",
+                    "Categories",
                     style: TextStyle(
                       color: ColorManager.black2,
                       fontFamily: FontConstant.fontFamilyPoppins,
@@ -127,7 +137,7 @@ class _MainPageState extends State<MainPage> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
-                    "Recommended",
+                    "Products",
                     style: TextStyle(
                       color: ColorManager.black2,
                       fontFamily: FontConstant.fontFamilyPoppins,

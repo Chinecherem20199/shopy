@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:shopy/models/dommydata/sample.dart';
 import 'package:shopy/presentation/widget/product_details.dart';
 
 import '../../models/dommydata/products.dart';
@@ -6,55 +8,123 @@ import '../../resources/color_manager.dart';
 import '../../resources/sized_manager.dart';
 
 class Recommens extends StatefulWidget {
-
-  const Recommens({Key? key,}) : super(key: key);
+  //final DummyProduct recomendsProduct;
+  
+  // final void Function()? onTap;
+  const Recommens({Key? key, }) : super(key: key);
 
   @override
   State<Recommens> createState() => _RecommensState();
 }
 
 class _RecommensState extends State<Recommens> {
+  
   List sampleProduct =[
      DummyProduct(
         id: "1",
-        image: "assets/images/shoe1.png",
-        title: "Nike Air Jordan",
-        subTitle: "1 Mid 2022",
-        description: "NIKE",
-        price: 4500.0,
-        rating: 3.5
-        // imagePath: imagePath
-        ),
-    DummyProduct(
-        id: "2",
         image: "assets/images/shoe2.png",
         title: "Nike Air Jordan",
         subTitle: "1 Mid 2021",
         description: "NIKE",
         price: 3500.0,
-        rating: 4.5
+        rating: 4.5,
+        quantity: 1
         // imagePath: imagePath
         ),
-    DummyProduct(
+         DummyProduct(
+        id: "2",
+        image: "assets/images/jeans.jpg",
+        title: "Jeans",
+        subTitle: "Rose Jeans",
+        description: "Jeans",
+        price: 880.0,
+        rating: 4.5,
+        quantity: 1
+        // imagePath: imagePath
+        ),
+   
+   DummyProduct(
         id: "3",
+        image: "assets/images/bag1.jpg",
+        title: "INA Bag",
+        subTitle: "1 Mid 2021",
+        description: "Leader",
+        price: 380.0,
+        rating: 4.5,
+        quantity: 1
+        // imagePath: imagePath
+        ),
+    
+    DummyProduct(
+        id: "4",
+        image: "assets/images/gown.jpg",
+        title: "Gown",
+        subTitle: "1 Mid 2022",
+        description: "Coton",
+        price: 880.0,
+        rating: 4.5,
+        quantity: 1
+        // imagePath: imagePath
+        ),
+         DummyProduct(
+        id: "5",
         image: "assets/images/shoe3.png",
         title: "Nike Air Jordan",
         subTitle: "1 New 2022",
         description: "NIKE",
         price: 2500.0,
-        rating: 3.5
+        rating: 3.5,
+        quantity: 1
         // imagePath: imagePath
         ),
-    DummyProduct(
-        id: "4",
+        
+        DummyProduct(
+        id: "6",
+        image: "assets/images/bag2.jpg",
+        title: "MARY Bag",
+        subTitle: "1 Mid 2022",
+        description: "Leader",
+        price: 380.0,
+        rating: 4.5,
+        quantity: 1
+        // imagePath: imagePath
+        ),
+        DummyProduct(
+        id: "7",
+        image: "assets/images/shirt.jpg",
+        title: "Shirt",
+        subTitle: "1 Mid 2022",
+        description: "Coton",
+        price: 380.0,
+        rating: 4.5,
+        quantity: 1
+        // imagePath: imagePath
+        ),
+        DummyProduct(
+        id: "8",
         image: "assets/images/shoe4.png",
         title: "Nike Balon Jordan",
         subTitle: "1 Mid 2020",
         description: "NIKE",
         price: 3000.0,
-        rating: 3.7
+        rating: 3.7,
+        quantity: 1
         // imagePath: imagePath
-        )
+        ),
+        
+       
+        DummyProduct(
+        id: "9",
+        image: "assets/images/shoe1.png",
+        title: "Nike Air Jordan",
+        subTitle: "1 Mid 2022",
+        description: "NIKE",
+        price: 4500.0,
+        rating: 3.5,
+        quantity: 1 
+        // imagePath: imagePath
+        ),
+ 
   ] ;
   // static List<DummyProduct> sampleProduct = [
   //   DummyProduct(
@@ -101,6 +171,19 @@ class _RecommensState extends State<Recommens> {
   List<DummyProduct> cart = [];
  // List<DummyProduct> get productCart => products;
   List<DummyProduct> get cartDetails => cart; 
+    void navigateToProductDetailsPage(int index){
+        final shop = context.read<Sample>();
+        final shopMenu = shop.product;
+        Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => ProductDetailsPage(
+                        product: sampleProduct[index],
+                       // product: products[index],
+                      ),
+                    ),
+                  );
+    }
 
   // final List<DummyProduct> products = List.generate(
   //   sampleProduct.length,
@@ -116,6 +199,9 @@ class _RecommensState extends State<Recommens> {
   // );
   @override
   Widget build(BuildContext context) {
+
+    final shop = context.read<Sample>();
+        final shopMenu = shop.product;
     return SizedBox(
       child: ListView.separated(
         shrinkWrap: true,
@@ -132,17 +218,19 @@ class _RecommensState extends State<Recommens> {
                   left: screenWidth(context) * 0.02,
                   right: screenWidth(context) * 0.02),
               child: InkWell(
-                onTap: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => ProductDetailsPage(
-                        product: sampleProduct[index],
-                       // product: products[index],
-                      ),
-                    ),
-                  );
-                },
+                //onTap: onTap,
+                onTap: ()=>navigateToProductDetailsPage(index),
+                //() {
+                  // Navigator.push(
+                  //   context,
+                  //   MaterialPageRoute(
+                  //     builder: (context) => ProductDetailsPage(
+                  //       product: sampleProduct[index],
+                  //      // product: products[index],
+                  //     ),
+                  //   ),
+                  // );
+                //},
                 child: Card(
                   // color: ColorManager.secondary,
                   elevation: 0.4,

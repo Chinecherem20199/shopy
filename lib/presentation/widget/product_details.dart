@@ -1,6 +1,8 @@
 // ignore_for_file: unnecessary_null_comparison
 
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:shopy/models/dommydata/sample.dart';
 
 import '../../models/dommydata/products.dart';
 import '../../resources/color_manager.dart';
@@ -38,6 +40,25 @@ class ProductDetailsPage extends StatefulWidget {
       });
     }
 
+   void addToCart(){
+    if(quantityCount>0){
+      //assess to sample shop
+      final shop = context.read<Sample>();
+
+      //add to cart
+      shop.addToCart(widget.product, quantityCount);
+
+      // Show successfull message here
+      showDialog(
+        barrierDismissible: false,
+        context: context, builder: (context)=>
+       AlertDialog(content: const Text("Added to cart succesfully."),
+      actions: [IconButton(onPressed: (){
+        Navigator.pop(context);
+        Navigator.pop(context);
+      }, icon: const Icon(Icons.done),),],),);
+    }
+   }
   @override
   Widget build(BuildContext context) {
     // use ref to listen to a provider
@@ -134,7 +155,7 @@ class ProductDetailsPage extends StatefulWidget {
                             color: ColorManager.buttonBlack,
                           ),
                           child: Text(
-                            '\$${widget.product.price.toStringAsFixed(2)}',
+                            '\$ ${widget.product.price.toStringAsFixed(2)}',
                             //widget.product.price.toString(),
                             style: TextStyle(
                               fontWeight: FontWeightManager.medium,
@@ -289,7 +310,7 @@ class ProductDetailsPage extends StatefulWidget {
                         Row(
                           children: [
                             Text(
-                              "Total:",
+                              "Price:",
                               style: TextStyle(
                                 color: ColorManager.black,
                                 fontSize: screenHeight(context) * 0.02,
@@ -301,7 +322,7 @@ class ProductDetailsPage extends StatefulWidget {
                               width: screenWidth(context) * 0.006,
                             ),
                             Text(
-                              "4000",
+                              '\$ ${widget.product.price.toStringAsFixed(2)}',
                               style: TextStyle(
                                 color: ColorManager.black,
                                 fontSize: screenHeight(context) * 0.02,
@@ -321,7 +342,7 @@ class ProductDetailsPage extends StatefulWidget {
                         width: double.infinity,
                         child: ElevatedButton(
                           onPressed: () {
-
+                            addToCart();
                             // Add your button's onPressed function here
                           },
                           style: ElevatedButton.styleFrom(

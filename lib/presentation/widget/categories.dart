@@ -18,26 +18,31 @@ class _CategoriesListState extends State<CategoriesList> {
    static List<Categories> category = [
     Categories(
         
-        image: "assets/images/shoe1.png",
-        name: "Nike Air Jordan",
+        image: 'assets/images/bag1.jpg', 
+      name: 'Bag'
         // imagePath: imagePath
         ),
     Categories(
        
+        image: "assets/images/gown.jpg", 
+      name: 'Gown'
+        // imagePath: imagePath
+        ),
+    Categories(
+       
+         image: "assets/images/shirt.jpg", 
+      name: 'Shirt'
+        // imagePath: imagePath
+        ),
+    Categories(
         image: "assets/images/shoe2.png",
-        name: "Nike Air Jordan",
-       
-        // imagePath: imagePath
-        ),
-    Categories(
-       
-        image: "assets/images/shoe3.png",
-        name: "Nike Air Jordan",
-        // imagePath: imagePath
-        ),
-    Categories(
-        image: "assets/images/shoe4.png",
         name: "Nike Balon Jordan",
+  
+        // imagePath: imagePath
+        ),
+        Categories(
+       image: "assets/images/jeans.jpg", 
+      name: 'Trouser',
   
         // imagePath: imagePath
         )

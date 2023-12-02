@@ -31,6 +31,7 @@ class _OnbondingPageState extends State<OnbondingPage> {
         decoration: BoxDecoration(color: ColorManager.primary),
         child: Padding(
           padding: EdgeInsets.only(
+           
             top: screenHeight(context) * 0.05,
             bottom: screenHeight(context) * 0.02,
             left: screenWidth(context) * 0.05,
@@ -39,41 +40,50 @@ class _OnbondingPageState extends State<OnbondingPage> {
           child: Column(
             children: [
               SizedBox(
+                
                 // height: screenHeight(context) * 0.1,
                 // width: double.infinity,
                 height: screenHeight(context) * 0.35,
                 width: screenWidth(context) * 0.7,
-                child: Image.asset(
-                  "assets/images/shoe3.png",
-                  height: screenHeight(context) * 0.35,
-                  width: screenWidth(context) * 0.7,
+                child: Semantics(
+                  label: "Buy shoes here image",
+                  child: Image.asset(
+                    "assets/images/shoe3.png",
+                    height: screenHeight(context) * 0.35,
+                    width: screenWidth(context) * 0.7,
+                  ),
                 ),
               ),
-              Text(
-                style: TextStyle(
-                  fontFamily: FontConstant.fontFamilyPoppins,
-                  fontSize: screenWidth(context) * 0.09,
-                  color: ColorManager.white,
-                  fontWeight: FontWeightManager.regular,
+              Semantics(
+                child: Text(
+                  style: TextStyle(
+                    fontFamily: FontConstant.fontFamilyPoppins,
+                    fontSize: screenWidth(context) * 0.09,
+                    color: ColorManager.white,
+                    fontWeight: FontWeightManager.regular,
+                  ),
+                  overflow: TextOverflow.clip,
+                  // textAlign: TextAlign.center,
+                  "Your favorite outfit here",
                 ),
-                overflow: TextOverflow.clip,
-                // textAlign: TextAlign.center,
-                "Your favorite shoes",
               ),
               SizedBox(
                 height: screenHeight(context) * 0.02,
               ),
-              Text(
-                style: TextStyle(
-                  fontFamily: FontConstant.fontFamilyPoppins,
-                  fontSize: screenWidth(context) * 0.03,
-                  color: ColorManager.white,
-                  fontWeight: FontWeightManager.regular,
+              Semantics(
+                
+                child: Text(
+                  style: TextStyle(
+                    fontFamily: FontConstant.fontFamilyPoppins,
+                    fontSize: screenWidth(context) * 0.03,
+                    color: ColorManager.white,
+                    fontWeight: FontWeightManager.regular,
+                  ),
+                  overflow: TextOverflow.clip,
+                  // textAlign: TextAlign.center,
+                  "Find the latest running outfit for both men and women, "
+                  "road & track from top brands",
                 ),
-                overflow: TextOverflow.clip,
-                // textAlign: TextAlign.center,
-                "Find the latest men’s running shoes for trail, "
-                "road & track from top brands",
               ),
               SizedBox(
                 height: screenHeight(context) * 0.15,
@@ -114,13 +124,16 @@ class _OnbondingPageState extends State<OnbondingPage> {
                           mainAxisAlignment: MainAxisAlignment.center,
                           // crossAxisAlignment: CrossAxisAlignment,
                           children: [
-                            Text(
-                              "Continue",
-                              style: TextStyle(
-                                fontSize: screenWidth(context) * 0.03,
-                                color: ColorManager.white,
-                                fontFamily: FontConstant.fontFamilyPoppins,
-                                fontWeight: FontWeightManager.semiBold,
+                            Semantics(
+                              label: "Click here to view the items",
+                              child: Text(
+                                "Continue",
+                                style: TextStyle(
+                                  fontSize: screenWidth(context) * 0.03,
+                                  color: ColorManager.white,
+                                  fontFamily: FontConstant.fontFamilyPoppins,
+                                  fontWeight: FontWeightManager.semiBold,
+                                ),
                               ),
                             ),
                             SizedBox(

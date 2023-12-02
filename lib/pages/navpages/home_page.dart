@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:shopy/pages/navpages/cart_page.dart';
-import 'package:shopy/pages/navpages/favourite_page.dart';
 import 'package:shopy/pages/navpages/main_page.dart';
 
 class HomePage extends StatefulWidget {
@@ -46,10 +45,10 @@ class HomePageState extends State<HomePage> {
             label: "Cart",
             icon: Icon(Icons.shopping_cart),
           ),
-          BottomNavigationBarItem(
-            label: "Favourite",
-            icon: Icon(Icons.favorite),
-          )
+          // BottomNavigationBarItem(
+          //   label: "Favourite",
+          //   icon: Icon(Icons.favorite),
+          // )
         ],
       ),
     );
@@ -61,8 +60,8 @@ class HomePageState extends State<HomePage> {
         return MainPage();
       case 1:
         return CartPage();
-      case 2:
-        return FavouritePage();
+      // case 2:
+      //   return FavouritePage();
       default:
         return Container();
     }

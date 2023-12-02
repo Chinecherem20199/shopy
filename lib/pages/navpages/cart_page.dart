@@ -1,52 +1,141 @@
+
+
 import 'package:flutter/material.dart';
-import 'package:shopy/models/dommydata/products.dart';
+import 'package:provider/provider.dart';
 
-class CartPage extends StatefulWidget {
-   List<DummyProduct> cart = [];
-  // final List<DummyProduct> cart = [];
-   CartPage({Key? key,}) : super(key: key);
-  // const CartPage({Key? key, required this.cart}) : super(key: key);
+import '../../models/dommydata/products.dart';
+import '../../models/dommydata/sample.dart';
+import '../../resources/color_manager.dart';
+import '../../resources/sized_manager.dart';
 
-  @override
-  State<CartPage> createState() => _CartPageState();
-}
+class CartPage extends StatelessWidget {
+  const CartPage({super.key});
+   void removeFromCart(DummyProduct product, BuildContext context){
+    final shop = context.read<Sample>();
+    shop.removeToCart(product);
 
-class _CartPageState extends State<CartPage> {
+
+   }
+   void totalPrice(){
+
+   }
   @override
   Widget build(BuildContext context) {
-    return SafeArea(child: Scaffold(
-      body: ListView.builder( itemCount: widget.cart.length,
-        itemBuilder: (context, index){
+    return Consumer<Sample>(
+      builder: (context, value, child) => Scaffold(
+        appBar: AppBar(
+          title: const Center(child: Text("My  Cart")),
+          backgroundColor: Colors.transparent,
+          elevation: 0,
+          foregroundColor: Colors.grey[800],
+        ),
+        body: Column(
+          children: [
+            Expanded(
+              child: ListView.builder(
+                itemCount: value.cart.length,
+                itemBuilder: (context, index){
+                  final DummyProduct product = value.cart[index];
+                  final String itemName = product.title;
+                  final String itemImage = product.image;
+                  final double itemPrice = product.price;
+            
+                  return Container(
+                    decoration: BoxDecoration(
+                      color: const Color(0xffECE0E0),
+                      borderRadius: BorderRadius.circular(8),
+                      ),
+                      margin: EdgeInsets.only(left: screenWidth(context)*0.025, right: screenWidth(context)*0.025, top:screenHeight(context)*0.025),
+                     
+                    child: ListTile(
+                      leading: Image.asset(itemImage, ),
+                      title: Text(itemName, 
+                      style: TextStyle(color: Colors.grey[800],  
+                      fontFamily: FontConstant.fontFamilyPoppins,
+                      fontWeight: FontWeightManager.bold, 
+                      fontSize: screenWidth(context)* 0.035),),
+                      subtitle: Text("\$ ${itemPrice.toString()}",
+                      style: TextStyle(color: Colors.grey[800],
+                      fontFamily: FontConstant.fontFamilyPoppins,
+                       fontWeight: FontWeightManager.semiBold,
+                       fontSize: screenWidth(context)* 0.025
+                      ),),
+                      trailing: IconButton(
+                       onPressed: (){
+                        Provider.of<Sample>(context, listen: false).removeToCart(product);
+                       },
+                      // onPressed: ()=> removeFromCart(product, context),
+                        icon: const Icon(Icons.delete, color: Colors.grey,),
+                      ),
+                    ),
+                  );
+                },),
+            ),
+            SizedBox(height: screenHeight(context)* 0.015,),
+             //Total Price
+             Container(
+              padding: EdgeInsets.all(8),
+              margin: EdgeInsets.only(bottom: screenHeight(context)* 0.04, left: screenWidth(context)* 0.05, right: screenWidth(context)* 0.05),
+             decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(12),
+              color: Color(0xffECE0E0),
+             ),
+             child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+               children: [
+                 Text("Total Price", style: TextStyle(color: Colors.grey[800],
+                  fontWeight: FontWeightManager.bold,
+                              fontFamily: FontConstant.fontFamilyPoppins,
+                              fontSize: screenHeight(context) * 0.02,
+                 ),),
+                 
+                 Text("\$ ${value.getTotalPrice().toString()}",),
+               ],
+             ),
+             ),
+              Center(
+                      child: Container(
+                        padding: EdgeInsets.only(bottom: screenHeight(context)* 0.04, left: screenWidth(context)* 0.05, right: screenWidth(context)* 0.05),
+                        width: double.infinity,
+                        child: ElevatedButton(
+                          onPressed: () {
+                            
+                            // Add your button's onPressed function here
+                          },
+                          style: ElevatedButton.styleFrom(
+                            foregroundColor: Colors.white,
+                            backgroundColor: Colors.grey[800], // Set the text color
+                            padding: EdgeInsets.symmetric(
+                                horizontal: screenWidth(context) * 0.025,
+                                vertical: screenHeight(context) *
+                                    0.015), // Set padding
+                            textStyle: TextStyle(
+                                fontSize: screenHeight(context) *
+                                    0.02), // Set the text style
+                            elevation: 8, // Set the elevation (shadow)
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(
+                                  15), // Set border radius
+                            ),
+                          ),
+                          child: Text(
+                            'Pay now',
+                            style: TextStyle(
+                              fontWeight: FontWeightManager.bold,
+                              fontFamily: FontConstant.fontFamilyPoppins,
+                              fontSize: screenHeight(context) * 0.02,
+                              color: ColorManager.white,
+                            ),
+                          ),
+                        ),
+                      ),
+                    )
+          ],
+          // Pay button
           
-       final DummyProduct product = widget.cart[index];
-          return ListTile(
-            title: Text(product.title),
-            subtitle: Text('\$${product.price.toStringAsFixed(2)}'),
-            trailing: Row(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                IconButton(
-                  icon: Icon(Icons.remove),
-                  onPressed: () {
-                    setState(() {
-                      if (widget.cart[index] != null) {
-                        widget.cart.removeAt(index);
-                      }
-                    });
-                  },
-                ),
-                Text('1'), // Replace with the actual quantity
-                IconButton(
-                  icon: Icon(Icons.add),
-                  onPressed: () {
-                    // Implement quantity increment logic
-                  },
-                ),
-              ],
-            ));
 
-          
-        },),
-    ),);
+        ),
+      ),
+    );
   }
 }
