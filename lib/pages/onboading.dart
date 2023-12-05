@@ -125,7 +125,8 @@ class _OnbondingPageState extends State<OnbondingPage> {
                           // crossAxisAlignment: CrossAxisAlignment,
                           children: [
                             Semantics(
-                              label: "Click here to view the items",
+                              button: true,
+                              //label: "Click here to view the items",
                               child: Text(
                                 "Continue",
                                 style: TextStyle(

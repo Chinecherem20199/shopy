@@ -53,7 +53,8 @@ class ProductDetailsPage extends StatefulWidget {
         barrierDismissible: false,
         context: context, builder: (context)=>
        AlertDialog(content: const Text("Added to cart succesfully."),
-      actions: [IconButton(onPressed: (){
+      actions: [
+        IconButton(onPressed: (){
         Navigator.pop(context);
         Navigator.pop(context);
       }, icon: const Icon(Icons.done),),],),);
@@ -80,12 +81,16 @@ class ProductDetailsPage extends StatefulWidget {
                   children: [
                     Row(
                       children: [
-                        InkWell(
-                            onTap: () {
-                              Navigator.pop(context);
-                            },
-                            child:
-                                const Icon(Icons.arrow_back_ios_new_outlined)),
+                        Semantics(
+                          button: true,
+                          label: "go back",
+                          child: InkWell(
+                              onTap: () {
+                                Navigator.pop(context);
+                              },
+                              child:
+                                  const Icon(Icons.arrow_back_ios_new_outlined)),
+                        ),
                         SizedBox(
                           width: screenWidth(context) * 0.025,
                         ),
@@ -102,21 +107,24 @@ class ProductDetailsPage extends StatefulWidget {
                     SizedBox(
                       height: screenHeight(context) * 0.01,
                     ),
-                    Container(
-                      height: screenHeight(context) * 0.5,
-                      width: double.infinity,
-                      decoration: BoxDecoration(
-                        borderRadius: const BorderRadius.only(
-                          topLeft: Radius.circular(15),
-                          topRight: Radius.circular(15),
-                          bottomRight: Radius.circular(25),
-                          bottomLeft: Radius.circular(25),
-                        ),
-                        image: DecorationImage(
-                          fit: BoxFit.cover,
-                          image: AssetImage(
-                            //"assets/images/shoe1.png",
-                           widget.product.image,
+                    Semantics(
+                      label: widget.product.description,
+                      child: Container(
+                        height: screenHeight(context) * 0.5,
+                        width: double.infinity,
+                        decoration: BoxDecoration(
+                          borderRadius: const BorderRadius.only(
+                            topLeft: Radius.circular(15),
+                            topRight: Radius.circular(15),
+                            bottomRight: Radius.circular(25),
+                            bottomLeft: Radius.circular(25),
+                          ),
+                          image: DecorationImage(
+                            fit: BoxFit.cover,
+                            image: AssetImage(
+                              //"assets/images/shoe1.png",
+                             widget.product.image,
+                            ),
                           ),
                         ),
                       ),
@@ -210,10 +218,10 @@ class ProductDetailsPage extends StatefulWidget {
                     SizedBox(
                       height: screenHeight(context) * 0.01,
                     ),
-                    Text(
-                      "Nike Jordan is ranking as one of the best sport "
-                      "shoes in the world. If leaves you in comfort at all times."
-                      " We guarantee total comfortability with the lightweight new designs",
+                    Text(widget.product.description,
+                      // "Nike Jordan is ranking as one of the best sport "
+                      // "shoes in the world. If leaves you in comfort at all times."
+                      // " We guarantee total comfortability with the lightweight new designs",
                       style: TextStyle(
                         color: ColorManager.black,
                         fontSize: screenHeight(context) * 0.015,
@@ -231,31 +239,37 @@ class ProductDetailsPage extends StatefulWidget {
                       children: [
                         Row(
                           children: [
-                            GestureDetector(
-                              onTap: decrementQuantity,
-                              //onTap: () {},
-                              child: Container(
-                                width: 30,
-                                height: 30,
-                                decoration: BoxDecoration(
-                                  shape: BoxShape.circle,
-                                  border: Border.all(
-                                    color:
-                                        Colors.black45, // Set the border color
-                                    width: 2, // Set the border width
-                                  ),
-                                ),
-                                child: Center(
-                                  child: Text(
-                                    "-",
-                                    style: TextStyle(
-                                      color: ColorManager.black,
-                                      fontSize: screenHeight(context) * 0.025,
-                                      fontFamily:
-                                          FontConstant.fontFamilyPoppins,
-                                      fontWeight: FontWeightManager.bold,
+                            Semantics(
+                              button: true,
+                              label: "decrement button",
+                              child: GestureDetector(
+                                onTap: decrementQuantity,
+                                //onTap: () {},
+                                child: Container(
+                                  //width: 30,
+                                  // height: 30
+                                  width: screenWidth(context) * 0.0875,
+                                  height: screenHeight(context) * 0.0875,
+                                  decoration: BoxDecoration(
+                                    shape: BoxShape.circle,
+                                    border: Border.all(
+                                      color:
+                                          Colors.black45, // Set the border color
+                                      width: 2, // Set the border width
                                     ),
-                                    textAlign: TextAlign.center,
+                                  ),
+                                  child: Center(
+                                    child: Text(
+                                      "-",
+                                      style: TextStyle(
+                                        color: ColorManager.black,
+                                        fontSize: screenHeight(context) * 0.025,
+                                        fontFamily:
+                                            FontConstant.fontFamilyPoppins,
+                                        fontWeight: FontWeightManager.bold,
+                                      ),
+                                      textAlign: TextAlign.center,
+                                    ),
                                   ),
                                 ),
                               ),
@@ -263,44 +277,53 @@ class ProductDetailsPage extends StatefulWidget {
                             SizedBox(
                               width: screenWidth(context) * 0.008,
                             ),
-                            Text(
-                              "$quantityCount",
-                              //"01",
-                              style: TextStyle(
-                                color: ColorManager.black,
-                                fontSize: screenHeight(context) * 0.02,
-                                fontFamily: FontConstant.fontFamilyPoppins,
-                                fontWeight: FontWeightManager.semiBold,
+                            Semantics(
+                              label: "$quantityCount",
+                              child: Text(
+                                "$quantityCount",
+                                //"01",
+                                style: TextStyle(
+                                  color: ColorManager.black,
+                                  fontSize: screenHeight(context) * 0.02,
+                                  fontFamily: FontConstant.fontFamilyPoppins,
+                                  fontWeight: FontWeightManager.semiBold,
+                                ),
                               ),
                             ),
                             SizedBox(
                               width: screenWidth(context) * 0.008,
                             ),
-                            GestureDetector(
-                              onTap: incrementQuantity,
-                              // onTap: () {},
-                              child: Container(
-                                width: 30,
-                                height: 30,
-                                decoration: BoxDecoration(
-                                  shape: BoxShape.circle,
-                                  border: Border.all(
-                                    color:
-                                        Colors.black45, // Set the border color
-                                    width: 2, // Set the border width
-                                  ),
-                                ),
-                                child: Center(
-                                  child: Text(
-                                    "+",
-                                    style: TextStyle(
-                                      color: ColorManager.black,
-                                      fontSize: screenHeight(context) * 0.02,
-                                      fontFamily:
-                                          FontConstant.fontFamilyPoppins,
-                                      fontWeight: FontWeightManager.bold,
+                            Semantics(
+                              label: "increment button",
+                              button: true,
+                              child: GestureDetector(
+                                onTap: incrementQuantity,
+                                // onTap: () {},
+                                child: Container(
+                                  // width: 30,
+                                  // height: 30,
+                                  width: screenWidth(context) * 0.0875,
+                                  height: screenHeight(context) * 0.0875,
+                                  decoration: BoxDecoration(
+                                    shape: BoxShape.circle,
+                                    border: Border.all(
+                                      color:
+                                          Colors.black45, // Set the border color
+                                      width: 2, // Set the border width
                                     ),
-                                    textAlign: TextAlign.center,
+                                  ),
+                                  child: Center(
+                                    child: Text(
+                                      "+",
+                                      style: TextStyle(
+                                        color: ColorManager.black,
+                                        fontSize: screenHeight(context) * 0.02,
+                                        fontFamily:
+                                            FontConstant.fontFamilyPoppins,
+                                        fontWeight: FontWeightManager.bold,
+                                      ),
+                                      textAlign: TextAlign.center,
+                                    ),
                                   ),
                                 ),
                               ),
